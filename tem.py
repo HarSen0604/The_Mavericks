@@ -600,15 +600,15 @@ def process_image():
     try:
         # Receive the data from the frontend
         data = request.json
-
+        print(data)
         # Call the function to process the image
-        result = mn(data)
+        result = mn(data['cheque'])
 
         # Check the result and return success or failure accordingly
         if result:
             return jsonify({"success": True}), 200
         else:
-            return jsonify({"success": False, "error": "Failed to process the image"}), 500
+            return jsonify({"success": False}), 200
     except Exception as e:
             return jsonify({"Error":"erroe"})
 
