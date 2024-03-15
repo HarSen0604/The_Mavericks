@@ -61,9 +61,10 @@ function Details() {
 
       // Image processing successful
       setIsLoading(false);
-      alert('Image processing successful');
+      alert('Check processing successful');
     } catch (error) {
       // Error occurred during image processing
+      alert("check Bounced download PDF For further details")
       setIsLoading(false);
       setError(error.message || 'An error occurred');
       console.error('Error:', error);
