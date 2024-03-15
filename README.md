@@ -83,9 +83,9 @@ Frontend (if React and JavaScript are involved):
 
 ## Contributors
 - Students from PSG College of Technology, BE CSE III Year, (2021-25)
-- Akshay Perison Davis (21Z205) (@Akshay1805)
-- Hareesh S (21Z218) (@HarSen0604)
-- Kavin Dev R (21Z224) (@kavinDEV15)
-- Navaneetha Krishnan K S (21Z233) (@navaneeenavan)
-- Sharan S (21Z254) (@sharanzzgit)
-- Snehan E M (21Z257) (@sanbec234)
+- Akshay Perison Davis (21Z205) @Akshay1805
+- Hareesh S (21Z218) @HarSen0604
+- Kavin Dev R (21Z224) @kavinDEV15
+- Navaneetha Krishnan K S (21Z233) @navaneeenavan
+- Sharan S (21Z254) @sharanzzgit
+- Snehan E M (21Z257) @sanbec234
