@@ -107,11 +107,6 @@ def ocr_model(hi_en, te_en, en):
                     leng += 1
             ocr_dict['chequeNo'] = chequeNo
         
-        # Processing for 'accNo' key
-        elif key == 'accNo':
-            result = en.readtext("accNo.jpg", detail=0, paragraph=True)
-            ocr_dict['accNo'] = result[0]
-        
         elif key == 'date':
             result = en.readtext("date.jpg", detail=0, paragraph=True)
             digits = ''.join(filter(str.isdigit, result[0]))
@@ -134,21 +129,13 @@ def ocr_db(ocr_dict):
     ocr_dict1 = {}
     ocr_dict1['accNo'] = ocr_dict.get('accNo', '')
     ocr_dict1['payee'] = ocr_dict.get('payee', '')
-    ocr_dict1['status'] = True  # Assuming validation passes initially
-    ocr_dict1['reason'] = ''
-    try:
-        amt_num = w2n.word_to_num(ocr_dict.get('amt1_txt', '') + " " + ocr_dict.get('amt2_txt', ''))
-        if amt_num != ocr_dict.get('amt_num', 0):
-            ocr_dict1['reason'] = 'Amount in text and number do not match'
-            local_validation_flag = False
-            global_validation_flag = False
-    except Exception as e:
-        local_validation_flag = False
-        global_validation_flag = False
-        ocr_dict1['reason'] = str(e)
-    ocr_dict1['amt_num'] = ocr_dict.get('amt_num', 0)
+    ocr_dict1['amt_num'] = float(ocr_dict['amt_num'].replace('/', '').replace('-', '').replace('/-', '').replace(' ', ''))
     ocr_dict1['chequeNo'] = ocr_dict.get('chequeNo', '')
     ocr_dict1['sign'] = Image.open('sign.jpg') if 'sign' in global_images else None
+    ocr_dict1['status'] = True  # Assuming validation passes initially
+    #ocr_dict1['cheque_img'] Upload the image with this dict da
+    ocr_dict1['reason'] = ''
+    ocr_dict1['date'] = ocr_dict['date']
     return ocr_dict1, local_validation_flag
 
 def validation(ocr_dict):
@@ -156,6 +143,7 @@ def validation(ocr_dict):
     local_validation_flag = True
     if 'date' in ocr_dict and ocr_dict['date'] is not None:
         given_date = ocr_dict['date']
+        print(given_date)
         current_date = datetime.now()
         difference = current_date - given_date
         if difference > timedelta(days=90):
@@ -163,13 +151,17 @@ def validation(ocr_dict):
             global_validation_flag = False
             ocr_dict['status'] = False
             ocr_dict['reason'] = "Validity of the check is expired"
+            print("Validity of the check is expired")
     else:
+        given_date = ocr_dict['date']
+        print("given date: " +given_date)
+        print("Date is failed")
         local_validation_flag = False
         global_validation_flag = False
     
     # use DB to check if cheque number is unique
     # use DB to check if accNo. and sign are same (integrate Snehan's code here)
-    return local_validation_flag
+    return local_validation_flag, ocr_dict
 
 def main():
     global hi_en
@@ -178,14 +170,16 @@ def main():
     hi_en = easyocr.Reader(['hi','en'], gpu=True)
     te_en = easyocr.Reader(['te','en'], gpu=True)
     en = easyocr.Reader(['en'], gpu=True)
-    input_image_path = 'c4.jpg'
+    input_image_path = 'thor.jpg'
     original_image = cv2.imread(input_image_path)
     filtered_image = gamma_create(input_image_path, original_image)
     filtered_image_bl_reg = add_black_regions(filtered_image)
     imgext(filtered_image, original_image)
     ocr_dict = ocr_model(hi_en, te_en, en)
     ocr_dict1, _ = ocr_db(ocr_dict)
-    validation(ocr_dict1)
+    _, ocr_dict1 = validation(ocr_dict1)
+    print("\n\nOCR: ")
+    print(ocr_dict1)
     if global_validation_flag:
         print("Validation Passed")
     else:
