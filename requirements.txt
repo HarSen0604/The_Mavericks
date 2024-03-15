@@ -1,9 +1,10 @@
+flask
 opencv-python
 numpy
-Pillow
-easyocr
-datetime
-word2number
+pillow
 pytesseract
+easyocr
+word2number
+scikit-image
+requests
 pymongo
-Flask
