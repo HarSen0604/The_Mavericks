@@ -1,5 +1,3 @@
-README.md:
-
 # Automated Cheque Clearing System
 
 ## Introduction
