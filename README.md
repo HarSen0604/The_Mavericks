@@ -33,12 +33,23 @@ The system supports multiple languages including English, Hindi, and Telugu, enh
 The system employs advanced techniques to detect potential frauds such as overwriting, scribbling, and the use of void pantographs. Void pantographs create copy-evident backgrounds on cheques, enabling the system to identify fake or altered documents.
 
 ## Technologies Used
+Backend:
+- Flask: Python-based web framework used for creating the backend server.
+- OpenCV: Library for computer vision tasks such as image processing and analysis.
+- NumPy: Python library for numerical computations, often used for handling arrays and matrices.
+- Pillow: Python Imaging Library (PIL) fork, used for opening, manipulating, and saving many different image file formats.
+- Pytesseract: Python wrapper for Google's Tesseract-OCR Engine, used for optical character recognition (OCR).
+- EasyOCR: Python package for optical character recognition (OCR) with support for multiple languages.
+- Word2Number: Python package for converting text numbers (words) into numerical values.
+- scikit-image: Collection of algorithms for image processing tasks such as image enhancement, segmentation, and feature extraction.
+- Requests: Python library for making HTTP requests.
 
-- Python
-- TensorFlow
-- OpenCV
-- Tesseract OCR
-- scikit-image
+Database:
+- PyMongo: Python driver for MongoDB, used for interacting with MongoDB databases.
+
+Frontend (if React and JavaScript are involved):
+- React: JavaScript library for building user interfaces.
+- JavaScript: Programming language commonly used for web development.
 
 ## Installation
 
