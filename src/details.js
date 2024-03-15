@@ -41,35 +41,44 @@ function Details() {
 
 
 
-  const checkit = async ({cheque}) => {
+  const checkit = async ({ cheque }) => {
+    console.log(cheque + "cheee")
     try {
       setIsLoading(true);
       setError(null);
-
+  
       // Send a POST request to the backend endpoint
       const response = await fetch('http://127.0.0.1:5000/process_image', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({cheque})
+        body: JSON.stringify({ cheque })
       });
-
+  
       if (!response.ok) {
         throw new Error('Failed to process the image');
       }
-
-      // Image processing successful
-      setIsLoading(false);
-      alert('Check processing successful');
+  
+      const responseData = await response.json();
+  
+      if (responseData.success) {
+        // Image processing successful
+        setIsLoading(false);
+        alert('Image processing successful');
+      } else {
+        // Image processing failed
+        setIsLoading(false);
+        alert('Image processing failed');
+      }
     } catch (error) {
       // Error occurred during image processing
-      alert("check Bounced download PDF For further details")
       setIsLoading(false);
       setError(error.message || 'An error occurred');
       console.error('Error:', error);
     }
   };
+  
 
 
  
@@ -100,7 +109,7 @@ function Details() {
 
   function Details({ Acc, Amnt, url1, url2, To, Reason, Status, validating, checkValidity , index}) {
 
-    console.log("this is the key" + index)
+    console.log("this is the key" + url2)
     return (
       <>
         <div className="container">
@@ -125,7 +134,7 @@ function Details() {
             }
           
             <div className="flex flex-row">
-              <button onClick={checkValidity} className="button" disabled={validating}>
+            <button onClick={() => checkit({ cheque: url2 })} className="button" disabled={validating}>
              
                 {validating ? (
                   <div className="loader"></div> 
