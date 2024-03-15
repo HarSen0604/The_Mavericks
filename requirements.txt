@@ -1,0 +1,9 @@
+opencv-python
+numpy
+Pillow
+easyocr
+datetime
+word2number
+pytesseract
+pymongo
+Flask
