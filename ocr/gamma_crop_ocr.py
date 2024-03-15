@@ -170,7 +170,7 @@ def main():
     hi_en = easyocr.Reader(['hi','en'], gpu=True)
     te_en = easyocr.Reader(['te','en'], gpu=True)
     en = easyocr.Reader(['en'], gpu=True)
-    input_image_path = 'thor.jpg'
+    input_image_path = 'c4.jpg'
     original_image = cv2.imread(input_image_path)
     filtered_image = gamma_create(input_image_path, original_image)
     filtered_image_bl_reg = add_black_regions(filtered_image)
