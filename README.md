@@ -28,7 +28,7 @@ The system supports multiple languages including English, Hindi, and Telugu, enh
 
 ### 4. Fraud Detection
 
-The system employs advanced techniques to detect potential frauds such as overwriting, scribbling, and the use of void pantographs. Void pantographs create copy-evident backgrounds on cheques, enabling the system to identify fake or altered documents.
+The implementation of Gamma binary imaging was made possible through the integration of sophisticated algorithms and image processing techniques into the system's fraud detection framework. By harnessing the power of Gamma binary imaging, the system can accurately analyze and identify fraudulent activities such as overwriting, scribbling, and the use of void pantographs on cheques. This technology enables the system to achieve enhanced detection capabilities, ensuring the integrity and security of financial transactions.
 
 ## Technologies Used
 
