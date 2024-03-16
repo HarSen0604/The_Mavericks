@@ -104,5 +104,5 @@ The implementation of Gamma binary imaging was made possible through the integra
 - ⁠Hareesh S (21Z218) @HarSen0604
 - ⁠Kavin Dev R (21Z224) @kavinDEV15
 - ⁠Navaneetha Krishnan K S (21Z233) @navaneeenavan
-- ⁠Sharan S (21Z254) @sanbec234
-- ⁠Snehan E M (21Z257) @sharanzzgit
+- ⁠Sharan S (21Z254) @sharanzzgit
+- ⁠Snehan E M (21Z257) @sanbec234
